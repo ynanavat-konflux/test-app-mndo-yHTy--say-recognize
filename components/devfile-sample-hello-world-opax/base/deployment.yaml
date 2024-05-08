@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: devfile-sample-hello-world-opax
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: devfile-sample-hello-world-opax
+    app.kubernetes.io/part-of: test-app-mndo
+  name: devfile-sample-hello-world-opax
+spec:
+  replicas: 0
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: my-nginx
+      app.kubernetes.io/instance: devfile-sample-hello-world-opax
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: my-nginx
+        app.kubernetes.io/instance: devfile-sample-hello-world-opax
+    spec:
+      containers:
+      - image: hello-world:latest
+        name: my-nginx
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        - containerPort: 8081
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1Gi
+status: {}
